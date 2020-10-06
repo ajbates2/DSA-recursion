@@ -48,8 +48,6 @@ class Array {
     }
 }
 
-module.exports = Array
-
 function main() {
 
     Array.SIZE_RATIO = 3;
