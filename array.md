@@ -1,4 +1,5 @@
-const Memory = require('./memory');
+## 1. Implement Array class from scratch
+```
 
 class Array {
     constructor() {
@@ -48,34 +49,30 @@ class Array {
         this.length--;
     }
 }
+```
+## 2. Explore the push() method
+`arr.push(3)`: length = 1, capacity = 3, address = 0
 
-function main() {
+`arr.push(5), (15), etc.`: length = 6, capacity = 12, address = 3
 
-    Array.SIZE_RATIO = 3;
+- length is self explanatory
+- capacity increases by the size ratio when the capacity limit is reached
+- address increases don't make sense to me.
 
-    let arr = new Array();
+## 3. pop() method
 
-    arr.push(3)
-    arr.push(5);
-    arr.push(15);
-    arr.push(19);
-    arr.push(45);
-    arr.push(10);
-    arr.pop();
-    arr.pop();
-    arr.pop();
-    arr.remove(0)
-    arr.push("tauhida");
+- length: 3
+- capacity: 12
+- address: 3
 
-    console.log(arr);
-}
+Nothing really changes as far as memory goes. pop() only affects the length of what I'm assuming would be the outputted array, without removing the information.
 
-function urlify(str) {
-    let str
-    for (let i = 0; i < str.length; i++) {
-        if (i === ' ') return '%20'
-    }
-    return str
-}
+## 4. Understanding more
 
-urlify('tauhida parveen')
+`arr.remove(0)` removes 1st item in array
+
+`arr.push('tauhida)` returns `NaN` because the 'memory' (float64array) only allows number values
+
+`._resize()` is used to allocate the correct amount of memory based on the given array with enough headroom for larger array's
+
+## 5. URLify
