@@ -76,3 +76,72 @@ Nothing really changes as far as memory goes. pop() only affects the length of w
 `._resize()` is used to allocate the correct amount of memory based on the given array with enough headroom for larger array's
 
 ## 5. URLify
+```
+function urlify(str) {
+    let newStr = str.replace(/ /g, '%20')
+    return newStr
+}
+```
+
+## 6. filter
+```
+function filtr(arr) {
+    let newArr = []
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] >= 5) {
+            newArr.push(arr[i])
+        }
+    }
+    return newArr
+}
+```
+
+## 7. Max Sum
+```
+function findMaxSum(arr) {
+    let max = 0
+    let sum = 0
+    for (let i = 0; i < arr.length; i++) {
+        sum = sum + arr[i]
+        if (max < sum) {
+            max = sum
+        }
+        if (sum < 0) {
+            sum = 0
+        }
+    }
+    return max
+}
+```
+
+## 8. Merge arrays
+```
+function mergeArrays(arr1, arr2) {
+    let merged = arr1.concat(arr2)
+    let sorted = merged.sort((a, b) => { return a - b })
+    return sorted
+}
+```
+## 9. Remove characters
+```
+function vowelRemover(string, vowels) {
+    let str = Array.from(string)
+    let vwls = new RegExp('[' + vowels + ']')
+    let filArr = str.map(char => {
+        if (vwls.test(char)) {
+            char = ''
+        } else { return char }
+    })
+    let final = ''
+    for (let i = 0; i < filArr.length; i++) {
+        if (filArr[i] !== undefined) {
+            final += filArr[i];
+        }
+    }
+    return final
+}
+```
+## 10. Products
+```
+
+```

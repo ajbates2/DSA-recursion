@@ -1,6 +1,6 @@
 const Memory = require('./memory');
 
-class Array {
+class Arrays {
     constructor() {
         this.mem = new Memory()
         this.length = 0;
@@ -51,9 +51,9 @@ class Array {
 
 function main() {
 
-    Array.SIZE_RATIO = 3;
+    Arrays.SIZE_RATIO = 3;
 
-    let arr = new Array();
+    let arr = new Arrays();
 
     arr.push(3)
     arr.push(5);
@@ -71,11 +71,65 @@ function main() {
 }
 
 function urlify(str) {
-    let str
-    for (let i = 0; i < str.length; i++) {
-        if (i === ' ') return '%20'
-    }
-    return str
+    let newStr = str.replace(/ /g, '%20')
+    return newStr
 }
 
-urlify('tauhida parveen')
+console.log(urlify('tauhida parveen'))
+console.log(urlify('www.thinkful.com /tauh ida parv een'))
+
+function filtr(arr) {
+    let newArr = []
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] >= 5) {
+            newArr.push(arr[i])
+        }
+    }
+    return newArr
+}
+
+console.log(filtr([1, 2, 3, 5, 6, 7, 8, 9, 10]))
+
+function findMaxSum(arr) {
+    let max = 0
+    let sum = 0
+    for (let i = 0; i < arr.length; i++) {
+        sum = sum + arr[i]
+        if (max < sum) {
+            max = sum
+        }
+        if (sum < 0) {
+            sum = 0
+        }
+    }
+    return max
+}
+
+console.log(findMaxSum([4, 6, -3, 5, -2, 1]))
+
+function mergeArrays(arr1, arr2) {
+    let merged = arr1.concat(arr2)
+    let sorted = merged.sort((a, b) => { return a - b })
+    return sorted
+}
+
+console.log(mergeArrays([1, 3, 6, 8, 11], [2, 3, 5, 8, 9, 10]))
+
+function vowelRemover(string, vowels) {
+    let str = Array.from(string)
+    let vwls = new RegExp('[' + vowels + ']')
+    let filArr = str.map(char => {
+        if (vwls.test(char)) {
+            char = ''
+        } else { return char }
+    })
+    let final = ''
+    for (let i = 0; i < filArr.length; i++) {
+        if (filArr[i] !== undefined) {
+            final += filArr[i];
+        }
+    }
+    return final
+}
+
+console.log(vowelRemover('Battle of the Vowels: Hawaii vs. Grozny', 'aeiou'))

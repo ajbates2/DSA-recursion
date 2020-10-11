@@ -88,8 +88,27 @@ console.log(factorial(5))
 
 // maze
 
-const navigate = path => {
-    // some stuff
+const navigate = (maze, x = 0, y = 0, path = []) => {
+    if (maze[y][x] === 'e') {
+        if (maze[x + 1] === 'e') {
+            path.push('r')
+        }
+        if (maze[y + 1] === 'e') {
+            path.push('d')
+        }
+        return path
+    }
+
+    console.log(y)
+    if (maze[y][x + 1] === ' ') {
+        path.push('r')
+        navigate(maze, x + 1, y, path)
+    }
+    else {
+        path.push('d')
+        navigate(maze, x, y + 1, path)
+    }
+    return path
 }
 
 let mySmallMaze = [
@@ -106,7 +125,7 @@ let maze = [
     [' ', ' ', ' ', ' ', ' ', ' ', 'e']
 ];
 
-console.log(navigate(mySmallMaze))
+console.log(navigate(maze))
 
 // Anagrams
 
@@ -186,4 +205,4 @@ const getBinary = int => {
     }
 }
 
-console.log(getBinary(2))
+console.log(getBinary(5))
