@@ -75,8 +75,8 @@ function urlify(str) {
     return newStr
 }
 
-console.log(urlify('tauhida parveen'))
-console.log(urlify('www.thinkful.com /tauh ida parv een'))
+//console.log(urlify('tauhida parveen'))
+//console.log(urlify('www.thinkful.com /tauh ida parv een'))
 
 function filtr(arr) {
     let newArr = []
@@ -88,7 +88,7 @@ function filtr(arr) {
     return newArr
 }
 
-console.log(filtr([1, 2, 3, 5, 6, 7, 8, 9, 10]))
+//console.log(filtr([1, 2, 3, 5, 6, 7, 8, 9, 10]))
 
 function findMaxSum(arr) {
     let max = 0
@@ -105,7 +105,7 @@ function findMaxSum(arr) {
     return max
 }
 
-console.log(findMaxSum([4, 6, -3, 5, -2, 1]))
+//console.log(findMaxSum([4, 6, -3, 5, -2, 1]))
 
 function mergeArrays(arr1, arr2) {
     let merged = arr1.concat(arr2)
@@ -113,7 +113,7 @@ function mergeArrays(arr1, arr2) {
     return sorted
 }
 
-console.log(mergeArrays([1, 3, 6, 8, 11], [2, 3, 5, 8, 9, 10]))
+//console.log(mergeArrays([1, 3, 6, 8, 11], [2, 3, 5, 8, 9, 10]))
 
 function vowelRemover(string, vowels) {
     let str = Array.from(string)
@@ -132,4 +132,67 @@ function vowelRemover(string, vowels) {
     return final
 }
 
-console.log(vowelRemover('Battle of the Vowels: Hawaii vs. Grozny', 'aeiou'))
+//console.log(vowelRemover('Battle of the Vowels: Hawaii vs. Grozny', 'aeiou'))
+
+function products(arr) {
+    let front = []
+    let back = []
+
+    front[0] = 1
+    back[arr.length - 1] = 1
+
+    for (let i = 1; i < arr.length; i++) {
+        front[i] = arr[i - 1] * front[i - 1]
+    }
+
+    for (let i = arr.length - 2; i >= 0; i--) {
+        back[i] = arr[i + 1] * back[i + 1]
+    }
+
+    for (let i = 0; i < arr.length; i++) {
+        arr[i] = front[i] * back[i]
+    }
+    return arr
+}
+
+//console.log(products([1, 3, 9, 4]))
+
+function zeroed(arr, x = 0, y = 0, output = []) {
+    if (arr.length === output.length) {
+        return output
+    }
+
+    let xSum = arr[x].reduce((acc, val) => { return acc + val })
+    console.log(xSum)
+
+    if (xSum < arr[x].length) {
+        output.push(0)
+        zeroed(arr, x + 1, y, output)
+        console.log(arr[x])
+    }
+    return output
+}
+
+const DDArray = [
+    [1, 0, 1, 1, 0],
+    [0, 1, 1, 1, 0],
+    [1, 1, 1, 1, 1],
+    [1, 0, 1, 1, 1],
+    [1, 1, 1, 1, 1]
+]
+
+console.log(zeroed(DDArray))
+
+function isSubstring(str1, str2) {
+    if (!str1 || !str2) {
+        return false;
+    }
+    if (str1.length !== str2.length) {
+        return false
+    }
+
+    return (str1 + str1).includes(str2)
+}
+
+console.log(isSubstring('amazon', 'azonma'))
+console.log(isSubstring('amazon', 'azonam'))

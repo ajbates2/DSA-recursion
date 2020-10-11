@@ -143,5 +143,41 @@ function vowelRemover(string, vowels) {
 ```
 ## 10. Products
 ```
+function products(arr) {
+    let front = []
+    let back = []
 
+    front[0] = 1
+    back[arr.length - 1] = 1
+
+    for (let i = 1; i < arr.length; i++) {
+        front[i] = arr[i - 1] * front[i - 1]
+    }
+
+    for (let i = arr.length - 2; i >= 0; i--) {
+        back[i] = arr[i + 1] * back[i + 1]
+    }
+
+    for (let i = 0; i < arr.length; i++) {
+        arr[i] = front[i] * back[i]
+    }
+    return arr
+}
+```
+## 11. 2D Array
+```
+WIP
+```
+## 12. String rotation
+```
+function isSubstring(str1, str2) {
+    if (!str1 || !str2) {
+        return false;
+    }
+    if (str1.length !== str2.length) {
+        return false
+    }
+
+    return (str1 + str1).includes(str2)
+}
 ```
