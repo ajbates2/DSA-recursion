@@ -99,7 +99,6 @@ const navigate = (maze, x = 0, y = 0, path = []) => {
         return path
     }
 
-    console.log(y)
     if (maze[y][x + 1] === ' ') {
         path.push('r')
         navigate(maze, x + 1, y, path)

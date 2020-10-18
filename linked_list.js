@@ -114,10 +114,10 @@ const display = list => {
     let size = 0
     let arr = []
     while (current !== null) {
-        console.log(current.value)
+        console.log(current)
         current = current.next
     }
-    return arr
+
 }
 
 const size = list => {
@@ -130,14 +130,14 @@ const size = list => {
         counter++
         node = node.next
     }
-    console.log(counter)
+    return counter
 }
 
 const isEmpty = list => {
     if (list.head === null) {
-        return 'List is empty'
+        return true
     }
-    else return `the list is not empty`
+    return false
 }
 
 const main = () => {
@@ -158,6 +158,11 @@ const main = () => {
     size(SLL)
     isEmpty(SLL)
 
+    return {
+        list: display(SLL),
+        size: size(SLL),
+        isEmpty: isEmpty(SLL)
+    }
 }
 
 console.log(main())
