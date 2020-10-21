@@ -43,7 +43,10 @@ class SepHashMap {
         }
 
         if (this._hashTable[index]) {
-            const slot = this._hashTable[index]
+            let slot = this._hashTable[index]
+            while (slot.next !== null) {
+                slot = slot.next
+            }
             slot.next = {
                 value: value,
                 next: null,

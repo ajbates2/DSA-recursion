@@ -22,6 +22,8 @@ function main() {
     lotr.set('HalfElven', 'Arwen')
     lotr.set('Ent', 'Treebeard')
     lotr.set('Hobbit', 'Frodo')
+    lotr.set('Hobbit', 'Samwise')
+
 
     let getMaiar = lotr.get('Maiar') // The Necromancer
     let getHobbit = lotr.get('Hobbit') // Bilbo

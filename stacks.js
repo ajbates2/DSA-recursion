@@ -117,9 +117,12 @@ function exprBalance(str) {
             stack.push(braces[braceIndex + 1])
         }
         else {
-            let last = stack.pop()
-            if (last !== braces[braceIndex]) {
-                return `missing '${braces[i]}'`
+            let expectedChar = stack.pop()
+            if (expectedChar !== char) {
+                if (expectedChar !== braces[i]) {
+                    return `missing '${braces[braceIndex - 1]}'`
+                }
+                return `missing '${expectedChar}'`
             }
         }
     }
@@ -127,9 +130,9 @@ function exprBalance(str) {
 }
 
 
-//console.log(exprBalance('([{])')) // missing closing '}'
-//console.log(exprBalance('({}])')) // missing opening '['
-//console.log(exprBalance('({}{}[])')) // balanced
+console.log(exprBalance('([{])')) // missing closing '}'
+console.log(exprBalance('({}])')) // missing opening '['
+console.log(exprBalance('({}{}[])')) // balanced
 
 function sortStack(inStack) {
     const tempStack = new Stack()
@@ -171,4 +174,4 @@ qStack.push('two')
 qStack.push('three')
 qStack.push('four')
 
-console.log(display(stackToQ(qStack)))
+//console.log(display(stackToQ(qStack)))
