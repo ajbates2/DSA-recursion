@@ -37,6 +37,8 @@ class Queue {
     }
 }
 
+module.exports = Queue
+
 function display(q) {
     let current = q.first
     let arr = []
