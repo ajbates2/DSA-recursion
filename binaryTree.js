@@ -11,14 +11,14 @@ class BinarySearchTree {
 
     insert(key, value) {
         if (this.key == null) {
-            this.root = true
             this.key = key
             this.value = value
         }
 
         else if (key < this.key) {
             if (this.left == null) {
-                this.left = new BinarySearchTree(key, value, this)
+                const parent = {key: this.key, value: this.value}
+                this.left = new BinarySearchTree(key, value, parent)
             }
             else {
                 this.left.insert(key, value)
@@ -27,7 +27,8 @@ class BinarySearchTree {
 
         else {
             if (this.right == null) {
-                this.right = new BinarySearchTree(key, value, this)
+                const parent = {key: this.key, value: this.value}
+                this.right = new BinarySearchTree(key, value, parent)
             }
             else {
                 this.right.insert(key, value)
@@ -79,36 +80,39 @@ class BinarySearchTree {
             throw new Error('Key Error')
         }
     }
-
-    dfs(values = []) {
+    
+    preOrder(keys = []) {
+        keys.push(this.key)
         if (this.left) {
-            values = this.left.dfs(values)
+            keys = this.left.preOrder(keys)
         }
-        values.push(this.value)
-
         if (this.right) {
-            values = this.right.dfs(values)
+            keys = this.right.preOrder(keys)
         }
-        return values
+        return keys
     }
 
-    bfs(tree, values = []) {
-        const queue = new Queue()
-        const node = tree.root
-        queue.enqueue(node);
-        while (queue.length) {
-            const node = queue.dequeue()
-            values.push(node.value)
-
-            if (node.left) {
-                queue.enqueue(node.left)
-            }
-
-            if (node.right) {
-                queue.enqueue(node.right)
-            }
+    inOrder(keys = []) {
+        if (this.left) {
+            keys = this.left.inOrder(keys);
         }
-        return values
+        keys.push(this.key);
+    
+        if (this.right) {
+            keys = this.right.inOrder(keys);
+        }
+        return keys;
+    }
+    
+    postOrder(keys = []) {
+        if (this.left) {
+            keys = this.left.preOrder(keys)
+        }
+        if (this.right) {
+            keys = this.right.preOrder(keys)
+        }
+        keys.push(this.key)
+        return keys
     }
 
     _replaceWith(node) {
@@ -146,7 +150,16 @@ class BinarySearchTree {
         }
         return this.left._findMin()
     }
+
+    _findMax() {
+        if (!this.right) {
+            return this
+        }
+        return this.right._findMax()
+    }
 }
+
+module.exports = BinarySearchTree
 
 // i believe this prints the size of the BST
 function tree(t) {
@@ -199,6 +212,7 @@ const numTree = buildTree(numArr)
 const easyQuestion = buildTree('EASYQUESTION')
 
 //console.dir(numTree, { depth: null })
+//console.log(numTree.bfs())
 //console.log(treeHeight(easyQuestion))
 //console.log(isBst(numTree)) // true
 
@@ -243,7 +257,6 @@ function isTreeBalanced(tree) {
     }
     const left = treeHeight(tree.left)
     const right = treeHeight(tree.right)
-    console.log(left, right)
 
     return (left > right || right > left) ? false : true
 }
@@ -283,4 +296,4 @@ function sameBst(arr1, arr2) {
 const arr1 = [3, 5, 4, 6, 1, 0, 2]
 const arr2 = [3, 1, 5, 2, 4, 6, 0]
 
-console.log(sameBst(arr1, arr2)) // true
+//console.log(sameBst(arr1, arr2)) // true

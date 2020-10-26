@@ -9,10 +9,13 @@ class Queue {
     constructor() {
         this.first = null
         this.last = null
+        this.length = 0
     }
     enqueue(data) {
         const node = new _Node(data)
 
+        this.length + 1
+        
         if (this.first === null) {
             this.first = node
         }
@@ -20,7 +23,6 @@ class Queue {
         if (this.last) {
             this.last.next = node
         }
-
         this.last = node
     }
     dequeue() {
@@ -235,4 +237,4 @@ line.enqueue({ name: 'Heike', paperwork: true })
 line.enqueue({ name: 'Mary', paperwork: true })
 line.enqueue({ name: 'Erika', paperwork: true })
 
-console.log(teller(line))
+//console.log(teller(line))
